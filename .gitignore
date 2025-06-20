@@ -1,1 +1,5 @@
 __pycache__/
+model_dataset/X_test.json
+model_dataset/X_train.json
+model_dataset/y_test.json
+model_dataset/y_train.json
