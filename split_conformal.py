@@ -29,13 +29,12 @@ def full_split_conformal_q(X_pooled,y_pooled, model,alpha = 0.1):
 
 def main():
 
-    model = joblib.load("xgboost_model.pkl")
+    model = joblib.load("model_dataset/xgboost_model18june.pkl")
     # Generating the q_hat
-    X,y = data_load()
-    _, X_pooled, _, y_pooled = train_test_split(X, y, test_size=0.2, random_state=42)
+    X_train,X_test,y_train,y_test = data_load()
 
-    split_conformal_test(X_pooled,y_pooled, model, 0.1)
-    q_hat = full_split_conformal_q(X_pooled,y_pooled, model,0.1)
+    split_conformal_test(X_test,y_test, model, 0.1)
+    q_hat = full_split_conformal_q(X_test,y_test, model,0.1)
     print(f"The q_hat from the total calibration set was {q_hat}")
 
     pd.DataFrame({'q_hat': [q_hat]}).to_csv('q_hat.csv', index=False)
